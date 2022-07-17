@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .droapdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .list-items {
+            display: none;
+            position: absolute;
+            min-width: 185px;
+        }
+
+        .list-items a {
+            display: block;
+            padding: 10px;
+            margin-top: 1rem;
+            background-color: greenyellow;
+            border-radius: 5px;
+        }
+
+
+
+
+
+
+
+
+
+
+        #jsddm {
+            margin: 0;
+            padding: 0
+        }
+
+        #jsddm li {
+            float: left;
+            list-style: none;
+            font: 12px Tahoma, Arial
+        }
+
+        #jsddm li a {
+            display: block;
+            background: #20548E;
+            padding: 5px 12px;
+            text-decoration: none;
+            border-right: 1px solid white;
+            width: 70px;
+            color: #EAFFED;
+            white-space: nowrap
+        }
+
+        #jsddm li a:hover {
+            background: #1A4473
+        }
+
+        #jsddm li ul {
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            visibility: hidden;
+            border-top: 1px solid white
+        }
+
+        #jsddm li ul li {
+            float: none;
+            display: inline
+        }
+
+        #jsddm li ul li a {
+            width: auto;
+            background: #9F1B1B
+        }
+
+        #jsddm li ul li a:hover {
+            background: #7F1616
+        }
+    </style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <h1>hello images</h1>
+    <img src="https://curemyknee.com/images/drdkdas-img-2.png" alt="" height="300" width="300">
+
+    <div class="droapdown">
+        <h1>select somethings</h1>
+        <button onclick="dropdown_show_hide()">select one</button>
+        <div class="list-items" id="list-items">
+            <a href="/">hello1</a>
+            <a href="/">hello5</a>
+            <a href="/">hello1</a>
+            <a href="/">hello1</a>
+            <a href="/">hello1</a>
+            <a href="/">hello1</a>
+        </div>
+    </div>
+
+
+    <ul id="jsddm">
+        <li><a href="#">JavaScript</a>
+            <ul>
+                <li><a href="#">Drop Down Menu</a></li>
+                <li><a href="#">jQuery Plugin</a></li>
+                <li><a href="#">Ajax Navigation</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Effect</a>
+            <ul>
+                <li><a href="#">Slide Effect</a></li>
+                <li><a href="#">Fade Effect</a></li>
+                <li><a href="#">Opacity Mode</a></li>
+                <li><a href="#">Drop Shadow</a></li>
+                <li><a href="#">Semitransparent</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Navigation</a></li>
+        <li><a href="#">HTML/CSS</a></li>
+        <li><a href="#">Help</a></li>
+    </ul>
+
+
+
+    <script>
+        function dropdown_show_hide() {
+            var x = document.getElementById('list-items');
+            if (x.style.display = 'none') {
+                x.style.display = 'block';
+            } else {
+                x.style.display = 'none';
+            }
+        }
+
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        function jsddm_open(event) {
+            jsddm_canceltimer();
+            jsddm_close();
+            var submenu = $(this).find('ul');
+            if (submenu) {
+                ddmenuitem = submenu.css('visibility', 'visible');
+                return false;
+            }
+            return true;
+        }
+
+        function jsddm_close() { if (ddmenuitem) ddmenuitem.css('visibility', 'hidden'); }
+
+        function jsddm_timer() { closetimer = window.setTimeout(jsddm_close, timeout); }
+
+        function jsddm_canceltimer() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        $(document).ready(function () {
+            $('#jsddm li').bind('click', jsddm_open);
+            $('#jsddm > li').bind('mouseout', jsddm_timer);
+            $('#jsddm > li').bind('mouseover', jsddm_canceltimer);
+        });
+        document.onclick = jsddm_close;
+    </script>
+</body>
+
+</html>
